@@ -1,0 +1,94 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+body {
+  background: #e7eaf6;
+  text-align: center;
+}
+h1 {
+  margin: 0;
+  line-height: 1;
+}
+h2 {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  font-size: 36px;
+}
+hr {
+  border-color: #0f3057;
+  background-color: #0f3057;
+  color: #0f3057;
+  height: 15px;
+}
+
+small {
+  font-size: 10px;
+  color: #606470;
+  text-align: center;
+}
+.wrapper a {
+  text-decoration: none;
+  color: black;
+}
+
+li {
+  list-style: none;
+  color: #9ba6a5;
+}
+.active {
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.container {
+  max-width: 540px;
+  background: #fcfefe;
+  margin: 60px auto;
+  margin-bottom: 0px;
+  border-radius: 5px;
+  text-align: center;
+  padding: 60px;
+}
+.form-wrapper {
+  display: inline;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #0f3057;
+  border: #0f3057;
+  transition: all 200ms ease-in-out;
+}
+.btn-primary:hover {
+  background-color: #668ba4;
+  color: #fcfefe;
+  border: #fcfefe;
+}
+.btn-primary:focus {
+  background-color: #0f3057;
+  border: #0f3057;
+}
+.temp {
+  font-size: 16px;
+  position: relative;
+  top: -14px;
+}
+
+.list-info {
+  color: black;
+  text-transform: capitalize;
+}
+
+.forecast-date {
+  font-weight: bold;
+}
+
+.forecast-temp-max {
+  font-size: 16px;
+}
+
+.forecast-temp-min {
+  font-size: 13px;
+  opacity: 0.75;
+}
