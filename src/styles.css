@@ -2,6 +2,11 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
 body {
   background: #e7eaf6;
   text-align: center;

@@ -82,9 +82,15 @@ export default function App() {
             </ul>
           </div>
         </div>
-
-        <div className="forecast" id="forecast"></div>
       </div>
+      <footer>
+        <a
+          href="https://github.com/rachelbell27/react-weather-app"
+          rel="noreferrer"
+        >
+          This app is open source on GitHub.
+        </a>
+      </footer>
     </div>
   );
 }
