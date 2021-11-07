@@ -32,10 +32,6 @@ small {
   color: #606470;
   text-align: center;
 }
-.wrapper a {
-  text-decoration: none;
-  color: black;
-}
 
 li {
   list-style: none;
@@ -43,7 +39,6 @@ li {
 }
 .active {
   font-weight: bolder;
-  font-size: 18px;
 }
 
 .container {
