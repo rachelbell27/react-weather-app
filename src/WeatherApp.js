@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import WeatherTemperature from "./WeatherTemperature";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 export default function WeatherApp() {
   const [city, setCity] = useState("New York");
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -14,24 +15,18 @@ export default function WeatherApp() {
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
-      icon: response.data.weather[0].icon,
+      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       wind: response.data.wind.speed,
       location: response.data.name,
     });
-    console.log(response);
-    console.log(weatherData.temp);
-    console.log(weatherData);
-    console.log(response.data.main.temp);
   }
 
   function handleCity(event) {
     setCity(event.target.value);
-    console.log(city);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(url);
 
     axios.get(url).then(handleResponse);
   }
@@ -65,17 +60,14 @@ export default function WeatherApp() {
           <div className="wrapper">
             <h1>
               <span>{weatherData.location}</span>
-              <img
-                src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-                alt="weather icon"
-              />
+              <img src={weatherData.icon} alt={weatherData.description} />
             </h1>
             <WeatherTemperature temp={weatherData.temperature} />
 
             <div className="row">
               <ul className="col-6">
                 <li>
-                  Last updated:
+                  Last updated: <FormattedDate date={weatherData.date} />
                   <span className="list-info"> </span>
                 </li>
                 <li>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function WeatherTemperature(props) {
   const [unit, setUnit] = useState("fahrenheit");
-  const [temp, setTemp] = useState(props.temp);
+  const [temp, setTemp] = useState(Math.round(props.temp));
 
   function displayCelcius(event) {
     event.preventDefault();
