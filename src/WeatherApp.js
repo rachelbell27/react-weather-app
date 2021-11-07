@@ -3,29 +3,20 @@ import WeatherTemperature from "./WeatherTemperature";
 import axios from "axios";
 export default function WeatherApp() {
   const [city, setCity] = useState("New York");
-  const [weatherData, setWeatherData] = useState({
-    display: false,
-    location: "",
-    temp: null,
-    sky: "",
-    humidity: null,
-    speed: null,
-  });
+  const [weatherData, setWeatherData] = useState({ ready: false });
   let url = `https://api.openweathermap.org/data/2.5/weather?units=imperial&q=${city}&appid=d2e2c79fc9c89249abd1e2c823668949`;
-
-  function handleCity(event) {
-    setCity(event.target.value);
-    console.log(city);
-  }
 
   function handleResponse(response) {
     setWeatherData({
-      display: true,
-      location: response.data.name,
-      temp: response.data.main.temp,
-      sky: response.data.weather[0].description,
+      ready: true,
+      coordinates: response.data.coord,
+      temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
-      speed: response.data.wind.speed,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
+      wind: response.data.wind.speed,
+      location: response.data.name,
     });
     console.log(response);
     console.log(weatherData.temp);
@@ -33,12 +24,19 @@ export default function WeatherApp() {
     console.log(response.data.main.temp);
   }
 
+  function handleCity(event) {
+    setCity(event.target.value);
+    console.log(city);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
+    console.log(url);
+
     axios.get(url).then(handleResponse);
   }
 
-  if (city != null) {
+  if (weatherData.ready === true && weatherData.description != null) {
     return (
       <div>
         <div className="container">
@@ -72,7 +70,7 @@ export default function WeatherApp() {
                 alt="weather icon"
               />
             </h1>
-            <WeatherTemperature temp={weatherData.temp} />
+            <WeatherTemperature temp={weatherData.temperature} />
 
             <div className="row">
               <ul className="col-6">
@@ -82,7 +80,7 @@ export default function WeatherApp() {
                 </li>
                 <li>
                   Sky:
-                  <span className="list-info"> {weatherData.sky}</span>
+                  <span className="list-info"> {weatherData.description}</span>
                 </li>
               </ul>
               <ul className="col-6">
@@ -92,7 +90,7 @@ export default function WeatherApp() {
                 </li>
                 <li>
                   Wind speed:
-                  <span className="list-info"> {weatherData.speed}</span>
+                  <span className="list-info"> {weatherData.wind}</span>
                   mph
                 </li>
               </ul>
@@ -110,6 +108,7 @@ export default function WeatherApp() {
       </div>
     );
   } else {
+    axios.get(url).then(handleResponse);
     return <div>Loading...</div>;
   }
 }
