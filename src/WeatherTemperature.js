@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function WeatherTemperature(props) {
   const [unit, setUnit] = useState("fahrenheit");
-  const [temp, setTemp] = useState(Math.round(props.temp));
+  const [temp, setTemp] = useState(0);
+
+  useEffect(() => {
+    setTemp(Math.round(props.temp));
+  }, [props.temp]);
 
   function displayCelcius(event) {
     event.preventDefault();
